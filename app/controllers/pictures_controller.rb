@@ -3,7 +3,13 @@ class PicturesController < ApplicationController
     @pictures = Picture.all
     @most_recent_pictures = Picture.most_recent_five
     @picture_year = Picture.order(created_at: :desc).pluck(:created_at).map { |t| t.year }.uniq!
-    
+    @picture_2017 = Picture.created_in_year(2017)
+
+    @all_pictures_by_year = {}
+    @picture_year.each do |year|
+      pictures = Picture.created_in_year(year)
+      @all_pictures_by_year[year] = Picture.created_in_year(year)
+    end
 
     # extract year from the array...
   end
