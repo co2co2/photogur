@@ -9,6 +9,12 @@ class Picture < ActiveRecord::Base
   validates :title, length: { maximum: 20, minimum: 3}
   validates :url, uniqueness: true
 
+  def a_method_used_for_validation_purposes
+    errors.add(:artist, "cannot be blank")
+    errors.add(:url, "cannot be blank")
+  end
+
+
   def self.newest_first
     Picture.order("created_at DESC")
   end
