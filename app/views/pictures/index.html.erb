@@ -1,11 +1,12 @@
 
-
-
-
-
-
 <%= link_to("New Picture", "/pictures/new") %>
-
+<h1>Most Recent Pictures</h1>
+<ul>
+  <% @most_recent_pictures.each do |picture| %>
+    <li><h3><%= picture.title %></h3></li>
+    <%= link_to(image_tag(picture.url), "/pictures/#{picture.id}") %>
+  <% end %>
+</ul>
 
 <h1>Pictures By Year</h1>
 <% @all_pictures_by_year.each do |year, pictures| %>
@@ -20,16 +21,3 @@
 <hr>
 
 <h1>Most recent pictures</h1>
-
-<ul>
-  <% @most_recent_pictures.each do |picture| %>
-    <li><%= picture.title %></li>
-    <%= link_to(image_tag(picture.url), "/pictures/#{picture.id}") %>
-  <% end %>
-</ul>
-
-<h2>2017</h2>
-<% @picture_2017.each do |picture| %>
-  <li><%= picture.title %></li>
-  <%= link_to(image_tag(picture.url), "/pictures/#{picture.id}") %>
-<% end %>
