@@ -11,6 +11,12 @@
     <%= f.label :url %><br>
     <%= f.text_field :url %>
   </p>
+  <p style="display: none">
+    <%= f.label :user_id %><br>
+    <%= f.text_field :user_id, value: current_user.id %>
+  </p>
+
+
   <p>
     <%= f.submit %>
   </p>
@@ -26,5 +32,5 @@
       </ul>
     </div>
   <% end %>
-  
+
 <% end %>

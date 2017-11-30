@@ -1,6 +1,6 @@
 class Picture < ActiveRecord::Base
 
-
+  belongs_to :user
   # validates :artist, presence: true,
   # # validates :milliseconds, :bytes, numericality: {only_integer:true, greater_than: 0}
   # # validates :unit_price, numericality:{greater_than_or_eaqual_to: 0.0}

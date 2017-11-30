@@ -1,5 +1,7 @@
 class PicturesController < ApplicationController
+  before_action :ensure_logged_in, except: [:show, :index]
   def index
+
     @pictures = Picture.all
     @most_recent_pictures = Picture.most_recent_five
     @picture_year = Picture.order(created_at: :desc).pluck(:created_at).map { |t| t.year }.uniq!
@@ -27,6 +29,7 @@ class PicturesController < ApplicationController
     @picture.title = params[:picture][:title]
     @picture.artist = params[:picture][:artist]
     @picture.url = params[:picture][:url]
+    @picture.user_id = current_user.id
 
 
     if @picture.save
@@ -45,10 +48,10 @@ class PicturesController < ApplicationController
 
   def update
     @picture = Picture.find(params[:id])
-
     @picture.title = params[:picture][:title]
     @picture.artist = params[:picture][:artist]
     @picture.url = params[:picture][:url]
+
 
     if @picture.save
     # if the picture gets saved, generate a get request to "/pictures" (the index)
